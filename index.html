@@ -41,78 +41,197 @@
   ]
 }
 </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --ink:#1d2329; --muted:#5b6670; --line:#e3e6e8; --accent:#1f5f8b; --bg:#fbfbfa; }
+  :root {
+    --bg:#f6f7f9; --surface:#ffffff; --ink:#131b2e; --muted:#46506a; --line:#d9dde5;
+    --gold:#d1ab3a; --link:#1b4a8a;
+    --btn-bg:#111a2e; --btn-ink:#ffffff; --band:#111a2e; --band-ink:#f4f5f1;
+    --serif:"Fraunces", Georgia, "Times New Roman", serif;
+    --sans:"Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0d1424; --surface:#151e33; --ink:#eef0f4; --muted:#aab3c7; --line:#2a3550;
+      --link:#8db6f0; --btn-bg:#d1ab3a; --btn-ink:#111a2e; --band:#070c18; }
+  }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 Georgia, "Times New Roman", serif; }
-  .wrap { max-width:760px; margin:0 auto; padding:48px 20px 64px; }
-  header { display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
-  header img { width:132px; height:132px; border-radius:50%; object-fit:cover; border:1px solid var(--line); }
-  h1 { font-size:2rem; line-height:1.2; margin:0 0 6px; }
-  .role { color:var(--muted); margin:0; font-family:system-ui, -apple-system, "Segoe UI", sans-serif; font-size:.98rem; }
-  h2 { font-size:1.15rem; margin:40px 0 10px; padding-bottom:6px; border-bottom:1px solid var(--line); font-family:system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing:.01em; }
-  a { color:var(--accent); }
-  ul { padding-left:20px; margin:0; }
-  li { margin:6px 0; }
-  .links { display:flex; flex-wrap:wrap; gap:8px 18px; list-style:none; padding:0; font-family:system-ui, -apple-system, "Segoe UI", sans-serif; font-size:.95rem; }
-  .book { background:#fff; border:1px solid var(--line); border-radius:8px; padding:16px 18px; }
-  footer { margin-top:48px; color:var(--muted); font-size:.85rem; font-family:system-ui, -apple-system, "Segoe UI", sans-serif; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:1.0625rem/1.65 var(--sans); -webkit-text-size-adjust:100%; }
+  img { max-width:100%; height:auto; display:block; }
+  a { color:var(--link); text-underline-offset:3px; }
+  a:focus-visible { outline:3px solid var(--gold); outline-offset:3px; border-radius:3px; }
+  .wrap { max-width:1040px; margin:0 auto; padding:0 20px; }
+  h1,h2,h3 { font-family:var(--serif); line-height:1.15; text-wrap:balance; margin:0; }
+  p { text-wrap:pretty; }
+
+  .skip { position:absolute; left:-999px; top:8px; background:var(--gold); color:#111a2e; padding:8px 14px; z-index:10; }
+  .skip:focus { left:8px; }
+
+  .hero { background:var(--band); color:var(--band-ink); border-bottom:4px solid var(--gold); }
+  .hero .wrap { display:grid; grid-template-columns:1.25fr 1fr; gap:48px; align-items:center; padding-top:64px; padding-bottom:64px; }
+  .tag { display:inline-block; font-weight:600; font-size:.95rem; color:var(--gold); border:1px solid rgba(209,171,58,.55); border-radius:999px; padding:3px 14px; margin:0 0 20px; }
+  h1 { font-size:clamp(2.2rem,6vw,3.9rem); font-weight:700; letter-spacing:-.015em; }
+  .lede { font-family:var(--serif); font-size:clamp(1.2rem,2.6vw,1.5rem); line-height:1.4; margin:18px 0 0; color:#e6e9f0; max-width:30ch; }
+  .sub { color:#c3c9d8; margin:16px 0 0; }
+  .btns { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+  .btn { display:inline-block; font-weight:700; text-decoration:none; padding:12px 22px; border-radius:8px; border:2px solid var(--gold); }
+  .btn.primary { background:var(--gold); color:#111a2e; }
+  .btn.ghost { color:#fff; }
+  .btn:hover { transform:translateY(-1px); box-shadow:0 4px 14px rgba(0,0,0,.3); }
+  .portrait { justify-self:center; position:relative; width:min(100%,340px); isolation:isolate; }
+  .portrait img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:18px; border:2px solid var(--gold); }
+  .portrait::before { content:""; position:absolute; inset:14px -14px -14px 14px; border:2px solid rgba(209,171,58,.45); border-radius:18px; z-index:-1; }
+
+  .cred { background:var(--surface); border-bottom:1px solid var(--line); }
+  .cred ul { list-style:none; margin:0; padding:16px 20px; display:flex; flex-wrap:wrap; justify-content:center; gap:6px 0; font-weight:600; font-size:.98rem; }
+  .cred li { padding:0 18px; }
+  .cred li + li { border-left:1px solid var(--line); }
+
+  section.wrap { padding-top:64px; }
+  h2 { font-size:clamp(1.6rem,3.6vw,2.2rem); font-weight:700; margin-bottom:8px; }
+  .intro { color:var(--muted); margin:0 0 8px; max-width:60ch; }
+
+  .about { display:grid; grid-template-columns:1fr 1fr; gap:36px; margin-top:16px; }
+  .about p { margin:0 0 1em; max-width:62ch; }
+
+  .book { display:grid; grid-template-columns:220px 1fr; gap:40px; align-items:center; background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:32px; margin-top:20px; }
+  .book img { width:220px; border-radius:6px; box-shadow:0 14px 30px rgba(10,16,32,.35); }
+  .book h3 { font-size:1.6rem; }
+  .book p { margin:12px 0 22px; max-width:52ch; }
+  .book .btn { background:var(--btn-bg); color:var(--btn-ink); border-color:var(--btn-bg); }
+
+  .group { margin-top:32px; }
+  .group h3 { font-size:1.3rem; margin-bottom:12px; }
+  .list { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:10px; }
+  .list a { display:flex; justify-content:space-between; align-items:center; gap:14px; height:100%; padding:14px 16px; background:var(--surface); border:1px solid var(--line); border-radius:10px; color:var(--ink); font-weight:600; text-decoration:none; line-height:1.35; }
+  .list a::after { content:"\2192"; color:var(--link); font-weight:700; flex:none; }
+  .list a:hover { border-color:var(--gold); box-shadow:0 2px 10px rgba(10,16,32,.12); }
+  .list .src { display:block; font-weight:400; font-size:.88rem; color:var(--muted); margin-top:2px; }
+
+  .chips { list-style:none; margin:16px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:10px; }
+  .chips a { display:inline-block; padding:8px 16px; border:1px solid var(--line); background:var(--surface); border-radius:999px; font-weight:600; text-decoration:none; }
+  .chips a:hover { border-color:var(--gold); }
+
+  .contact { margin-top:64px; background:var(--band); color:var(--band-ink); padding:56px 0 48px; border-top:4px solid var(--gold); }
+  .contact p { margin:8px 0 22px; color:#c8cedb; max-width:56ch; }
+  .contact a.btn { background:var(--gold); color:#111a2e; }
+  .contact a:focus-visible, .hero a:focus-visible, .skip:focus-visible { outline-color:#fff; }
+  footer { background:var(--band); color:#aab3c7; font-size:.9rem; padding:0 0 36px; }
+  footer p { margin:0; border-top:1px solid #2a3550; padding-top:20px; }
+
+  @media (max-width:780px) {
+    .hero .wrap { grid-template-columns:1fr; gap:36px; padding-top:40px; padding-bottom:48px; }
+    .portrait { order:-1; width:200px; justify-self:start; }
+    .about { grid-template-columns:1fr; gap:0; }
+    .book { grid-template-columns:1fr; padding:24px; justify-items:start; gap:24px; }
+    .book img { width:170px; }
+    .cred li { padding:0 12px; }
+    section.wrap { padding-top:48px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } .btn:hover { transform:none; } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <img src="headshot.jpg" alt="Robert Allen Bautista" width="132" height="132">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hero">
+  <div class="wrap">
     <div>
+      <p class="tag">Kansas City, MO</p>
       <h1>Robert Allen Bautista</h1>
-      <p class="role">Tax preparer &amp; accountant &middot; Kansas City &middot; English / Espa&ntilde;ol</p>
+      <p class="lede">Plain-English tax help for Kansas City small businesses, freelancers and gig workers.</p>
+      <p class="sub">Tax preparer &amp; accountant &middot; English / Espa&ntilde;ol</p>
+      <div class="btns">
+        <a class="btn primary" href="#guides">Read the guides</a>
+        <a class="btn ghost" href="https://www.amazon.com/dp/B0HRR9LMBB">Get the book</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/robert-bautista-tax">Connect on LinkedIn</a>
+      </div>
     </div>
-  </header>
+    <div class="portrait">
+      <img src="headshot.jpg" alt="Portrait of Robert Allen Bautista" width="340" height="340">
+    </div>
+  </div>
+</header>
 
-  <h2>About</h2>
-  <p>I'm a Kansas City tax preparer and accountant. I spent four years at PwC in IT audit and tax, served as Chief Accountant at a CPA firm, and have worked with more than 350 individual and small business clients. I hold an M.S. in Accounting and am a CPA candidate.</p>
-  <p>Most of the people I help are freelancers, gig workers and small business owners who never got a straight answer about their taxes. I write plain-English guides that answer those questions: how much to set aside, whether an LLC should be an S corp, what you can actually deduct, and what to do when an IRS letter arrives.</p>
+<div class="cred">
+  <ul aria-label="Credentials">
+    <li>PwC alum</li>
+    <li>Former Chief Accountant</li>
+    <li>M.S. in Accounting</li>
+    <li>CPA candidate</li>
+    <li>English / Espa&ntilde;ol</li>
+  </ul>
+</div>
 
-  <h2>Book</h2>
+<main id="main">
+<section class="wrap" aria-labelledby="about-h">
+  <h2 id="about-h">About</h2>
+  <div class="about">
+    <p>I'm a Kansas City tax preparer and accountant. I spent four years at PwC in IT audit and tax, served as Chief Accountant at a CPA firm, and have worked with more than 350 individual and small business clients. I hold an M.S. in Accounting and am a CPA candidate.</p>
+    <p>Most of the people I help are freelancers, gig workers and small business owners who never got a straight answer about their taxes. I write plain-English guides that answer those questions: how much to set aside, whether an LLC should be an S corp, what you can actually deduct, and what to do when an IRS letter arrives.</p>
+  </div>
+</section>
+
+<section class="wrap" aria-labelledby="book-h">
+  <h2 id="book-h">Book</h2>
   <div class="book">
-    <strong><a href="https://www.amazon.com/dp/B0HRR9LMBB">The Small Business Tax Code, Unlocked</a></strong><br>
-    What your accountant knows that you don't: deductions, strategies and IRS rules for solo owners and growing businesses. Kindle, 2026.
+    <img src="book-cover.jpg" alt="Cover of The Small Business Tax Code, Unlocked by Robert Allen Bautista" width="220" height="352" loading="lazy">
+    <div>
+      <h3><a href="https://www.amazon.com/dp/B0HRR9LMBB">The Small Business Tax Code, Unlocked</a></h3>
+      <p>What your accountant knows that you don't: deductions, strategies and IRS rules for solo owners and growing businesses. Kindle, 2026.</p>
+      <a class="btn" href="https://www.amazon.com/dp/B0HRR9LMBB">Get it on Amazon</a>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="guides" aria-labelledby="guides-h">
+  <h2 id="guides-h">Guides &amp; articles</h2>
+  <p class="intro">Straight answers to the questions I hear most.</p>
+
+  <div class="group">
+    <h3>Popular guides</h3>
+    <ul class="list">
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/how-self-employment-tax-works-step-by.html">How Self-Employment Tax Works, Step by Step</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/llc-vs-s-corp-which-is-right-for-your.html">LLC vs. S Corp: Which Is Right for Your Business?</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/quarterly-estimated-taxes-safe-harbor.html">Quarterly Estimated Taxes and the Safe Harbor</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/home-office-deduction-simplified-vs.html">Home Office Deduction: Simplified vs. Regular Method</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/taxes-for-uber-doordash-and-instacart.html">Taxes for Uber, DoorDash and Instacart Drivers</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/living-in-kansas-working-in-missouri-or.html">Living in Kansas, Working in Missouri (or the Reverse)</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/sep-ira-vs-solo-401k-which-retirement.html">SEP-IRA vs. Solo 401(k)</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/how-long-to-keep-tax-records-and.html">How Long to Keep Tax Records</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/cant-pay-your-tax-bill-your-options.html">Can't Pay Your Tax Bill? Your Options</a></li>
+      <li><a href="https://robertallenbautista.blogspot.com/2026/11/como-declarar-impuestos-si-trabajas-por.html" lang="es">C&oacute;mo declarar impuestos si trabajas por tu cuenta</a></li>
+    </ul>
   </div>
 
-  <h2>Popular guides</h2>
-  <ul>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/how-self-employment-tax-works-step-by.html">How Self-Employment Tax Works, Step by Step</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/llc-vs-s-corp-which-is-right-for-your.html">LLC vs. S Corp: Which Is Right for Your Business?</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/quarterly-estimated-taxes-safe-harbor.html">Quarterly Estimated Taxes and the Safe Harbor</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/home-office-deduction-simplified-vs.html">Home Office Deduction: Simplified vs. Regular Method</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/taxes-for-uber-doordash-and-instacart.html">Taxes for Uber, DoorDash and Instacart Drivers</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/living-in-kansas-working-in-missouri-or.html">Living in Kansas, Working in Missouri (or the Reverse)</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/sep-ira-vs-solo-401k-which-retirement.html">SEP-IRA vs. Solo 401(k)</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/how-long-to-keep-tax-records-and.html">How Long to Keep Tax Records</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/cant-pay-your-tax-bill-your-options.html">Can't Pay Your Tax Bill? Your Options</a></li>
-    <li><a href="https://robertallenbautista.blogspot.com/2026/11/como-declarar-impuestos-si-trabajas-por.html">C&oacute;mo declarar impuestos si trabajas por tu cuenta</a></li>
-  </ul>
+  <div class="group">
+    <h3>Kansas City guides</h3>
+    <ul class="list">
+      <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/self-employed-in-kansas-city-your-2026-tax-checklist">Self-Employed in Kansas City: Your 2026 Tax Checklist</a></li>
+      <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/state-line-taxes-in-the-kc-metro-8-questions-commuters-ask">State-Line Taxes in the KC Metro: 8 Questions Commuters Ask</a></li>
+      <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/kansas-city-gig-workers-taxes-without-the-headache">Kansas City Gig Workers: Taxes Without the Headache</a></li>
+      <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/hiring-your-first-employee-in-kansas-city-missouri-and-kansas-payroll-basics">Hiring Your First Employee in Kansas City</a></li>
+      <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/get-ready-for-tax-season-in-kansas-city-a-december-to-april-game-plan">Get Ready for Tax Season in Kansas City</a></li>
+    </ul>
+  </div>
 
-  <h2>Kansas City guides</h2>
-  <ul>
-    <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/self-employed-in-kansas-city-your-2026-tax-checklist">Self-Employed in Kansas City: Your 2026 Tax Checklist</a></li>
-    <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/state-line-taxes-in-the-kc-metro-8-questions-commuters-ask">State-Line Taxes in the KC Metro: 8 Questions Commuters Ask</a></li>
-    <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/kansas-city-gig-workers-taxes-without-the-headache">Kansas City Gig Workers: Taxes Without the Headache</a></li>
-    <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/hiring-your-first-employee-in-kansas-city-missouri-and-kansas-payroll-basics">Hiring Your First Employee in Kansas City</a></li>
-    <li><a href="https://robertallenbautista.wixsite.com/taxpro/post/get-ready-for-tax-season-in-kansas-city-a-december-to-april-game-plan">Get Ready for Tax Season in Kansas City</a></li>
-  </ul>
+  <div class="group">
+    <h3>Recent articles</h3>
+    <ul class="list">
+      <li><a href="https://www.linkedin.com/pulse/stop-skipping-home-office-deduction-robert-bautista-31eec/"><span>Stop Skipping the Home Office Deduction<span class="src">LinkedIn</span></span></a></li>
+      <li><a href="https://www.linkedin.com/pulse/153-surprise-i-see-every-tax-season-robert-bautista-tgffc/"><span>The 15.3% Surprise I See Every Tax Season<span class="src">LinkedIn</span></span></a></li>
+      <li><a href="https://www.linkedin.com/pulse/kansas-city-1-earnings-tax-explained-robert-bautista-wmq4c/"><span>The Kansas City 1% Earnings Tax, Explained<span class="src">LinkedIn</span></span></a></li>
+      <li><a href="https://robertallenbautista.medium.com/what-delivery-drivers-wish-they-knew-before-january-198386e4b32c"><span>What Delivery Drivers Wish They Knew Before January<span class="src">Medium</span></span></a></li>
+      <li><a href="https://www.scribd.com/document/1097111271/"><span>2026 Small Business Tax Checklist<span class="src">Scribd</span></span></a></li>
+    </ul>
+  </div>
+</section>
 
-  <h2>Recent articles</h2>
-  <ul>
-    <li><a href="https://www.linkedin.com/pulse/stop-skipping-home-office-deduction-robert-bautista-31eec/">Stop Skipping the Home Office Deduction</a> (LinkedIn)</li>
-    <li><a href="https://www.linkedin.com/pulse/153-surprise-i-see-every-tax-season-robert-bautista-tgffc/">The 15.3% Surprise I See Every Tax Season</a> (LinkedIn)</li>
-    <li><a href="https://www.linkedin.com/pulse/kansas-city-1-earnings-tax-explained-robert-bautista-wmq4c/">The Kansas City 1% Earnings Tax, Explained</a> (LinkedIn)</li>
-    <li><a href="https://robertallenbautista.medium.com/what-delivery-drivers-wish-they-knew-before-january-198386e4b32c">What Delivery Drivers Wish They Knew Before January</a> (Medium)</li>
-    <li><a href="https://www.scribd.com/document/1097111271/">2026 Small Business Tax Checklist</a> (Scribd)</li>
-  </ul>
-
-  <h2>Find me elsewhere</h2>
-  <ul class="links">
+<section class="wrap" aria-labelledby="else-h">
+  <h2 id="else-h">Find me elsewhere</h2>
+  <ul class="chips">
     <li><a href="https://www.linkedin.com/in/robert-bautista-tax">LinkedIn</a></li>
     <li><a href="https://robertallenbautista.wixsite.com/taxpro">Website (Wix)</a></li>
     <li><a href="https://robertallenbautista.blogspot.com/">Blog</a></li>
@@ -124,11 +243,18 @@
     <li><a href="https://linktr.ee/robertallenbautista">Linktree</a></li>
     <li><a href="https://sites.google.com/view/robert-allen-bautista">Google Site</a></li>
   </ul>
+</section>
+</main>
 
-  <h2>Contact</h2>
-  <p>The best way to reach me is a message on <a href="https://www.linkedin.com/in/robert-bautista-tax">LinkedIn</a>.</p>
-
-  <footer>&copy; 2026 Robert Allen Bautista. Articles are general information, not tax advice for your specific situation.</footer>
+<div class="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>The best way to reach me is a message on LinkedIn.</p>
+    <a class="btn" href="https://www.linkedin.com/in/robert-bautista-tax">Message me on LinkedIn</a>
+  </div>
 </div>
+<footer>
+  <div class="wrap"><p>&copy; 2026 Robert Allen Bautista. Articles are general information, not tax advice for your specific situation.</p></div>
+</footer>
 </body>
 </html>
