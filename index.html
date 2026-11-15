@@ -23,6 +23,9 @@
       "alternateName": ["Robert Bautista", "Robert A. Bautista"],
       "url": "https://robertallenbautista.com/",
       "image": {"@type": "ImageObject", "url": "https://robertallenbautista.com/headshot.jpg"},
+      "mainEntityOfPage": {"@id": "https://robertallenbautista.com/#profilepage"},
+      "workExample": {"@id": "https://robertallenbautista.com/#book1"},
+      "worksFor": {"@id": "https://robertallenbautista.com/#service"},
       "jobTitle": "Tax Preparer and Accountant",
       "description": "Robert Allen Bautista is a Kansas City tax preparer and accountant. He spent four years at PwC in real estate tax and IT audit, served as Chief Accountant at a CPA firm, and has worked with 350-plus individual and small business clients. He holds an M.S. and B.S. in Accounting from Purdue University Global, is a CPA candidate with an active PTIN, writes plain-English tax guides, and is the author of The Small Business Tax Code, Unlocked.",
       "homeLocation": {"@type": "Place", "name": "Kansas City, Missouri", "address": {"@type": "PostalAddress", "addressLocality": "Kansas City", "addressRegion": "MO", "addressCountry": "US"}},
@@ -186,11 +189,27 @@
     .cred li { padding:0 12px; }
     section.wrap { padding-top:48px; }
   }
+  .sitenav { background:var(--band); border-bottom:1px solid #2a3550; }
+  .sitenav .wrap { display:flex; flex-wrap:wrap; gap:4px 22px; padding-top:12px; padding-bottom:12px; align-items:center; }
+  .sitenav .brand { font-family:var(--serif); font-weight:700; color:#fff; text-decoration:none; margin-right:auto; }
+  .sitenav a { color:#e6e9f0; text-decoration:none; font-weight:600; font-size:.98rem; }
+  .sitenav a:hover, .sitenav a[aria-current] { color:var(--gold); }
+  .sitenav a:focus-visible { outline-color:#fff; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } .btn:hover { transform:none; } }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
+
+<nav class="sitenav" aria-label="Site">
+  <div class="wrap">
+    <a class="brand" href="/">Robert Allen Bautista</a>
+    <a href="/" aria-current="page">Home</a>
+    <a href="/about/">About</a>
+    <a href="/articles/">Articles</a>
+    <a href="https://www.amazon.com/dp/B0HRR9LMBB">Book</a>
+  </div>
+</nav>
 
 <header class="hero">
   <div class="wrap">
@@ -201,6 +220,7 @@
       <p class="sub">Tax preparer &amp; accountant &middot; English / Espa&ntilde;ol</p>
       <div class="btns">
         <a class="btn primary" href="#guides">Read the guides</a>
+        <a class="btn ghost" href="/articles/">All articles</a>
         <a class="btn ghost" href="https://www.amazon.com/dp/B0HRR9LMBB">Get the book</a>
         <a class="btn ghost" href="https://www.linkedin.com/in/robert-bautista-tax">Connect on LinkedIn</a>
       </div>
@@ -280,7 +300,6 @@
       <li><a href="https://www.linkedin.com/pulse/153-surprise-i-see-every-tax-season-robert-bautista-tgffc/"><span>The 15.3% Surprise I See Every Tax Season<span class="src">LinkedIn</span></span></a></li>
       <li><a href="https://www.linkedin.com/pulse/kansas-city-1-earnings-tax-explained-robert-bautista-wmq4c/"><span>The Kansas City 1% Earnings Tax, Explained<span class="src">LinkedIn</span></span></a></li>
       <li><a href="https://robertallenbautista.medium.com/what-delivery-drivers-wish-they-knew-before-january-198386e4b32c"><span>What Delivery Drivers Wish They Knew Before January<span class="src">Medium</span></span></a></li>
-      <li><a href="https://www.scribd.com/document/1097111271/"><span>2026 Small Business Tax Checklist<span class="src">Scribd</span></span></a></li>
     </ul>
   </div>
 </section>
@@ -288,6 +307,8 @@
 <section class="wrap" aria-labelledby="else-h">
   <h2 id="else-h">Find me elsewhere</h2>
   <ul class="chips">
+    <li><a href="/about/">About</a></li>
+    <li><a href="/articles/">All articles</a></li>
     <li><a href="https://www.linkedin.com/in/robert-bautista-tax">LinkedIn</a></li>
     <li><a href="https://robertallenbautista.wixsite.com/taxpro">Website (Wix)</a></li>
     <li><a href="https://robertallenbautista.blogspot.com/">Blog</a></li>
