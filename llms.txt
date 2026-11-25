@@ -3,7 +3,7 @@
 > Plain-English tax tips for Kansas City and Lawrence freelancers, gig workers and small business owners. Robert Allen Bautista: M.S. in Accounting, former PwC, CPA candidate, author of The Small Business Tax Code, Unlocked and The Small Business Tax Calendar. As quoted in Homes.com and Stonebridge Herald.
 
 ## Key pages
-- [Home](https://robertallenbautista.com/): Robert Allen Bautista, Kansas City tax preparer, accountant and author
+- [Home](https://robertallenbautista.com/): Robert Allen Bautista, Kansas City tax educator and author
 - [About Robert Allen Bautista](https://robertallenbautista.com/about/): biography, credentials and FAQ
 - [Official profiles](https://robertallenbautista.com/profiles/): every verified Robert Allen Bautista profile
 - [Books](https://robertallenbautista.com/robert-allen-bautista-books/): The Small Business Tax Code, Unlocked; The Small Business Tax Calendar
@@ -17,6 +17,8 @@
 - [2027 Tax Brackets and Standard Deduction: What Changes for Your 2027 Paycheck](https://robertallenbautista.com/articles/2027-tax-brackets-standard-deduction-what-changes/): The IRS 2027 tax brackets and standard deduction by filing status, with a worked example and what to check on your paycheck, by Robert Allen Bautista.
 - [2027 Contribution Limits: 401(k), IRA, HSA and the Social Security Wage Base](https://robertallenbautista.com/articles/2027-contribution-limits-401k-ira-hsa-social-security-wage-base/): The IRS and SSA 2027 limits for 401(k), IRA, HSA and the Social Security wage base, with sources and what each one means, by Robert Allen Bautista.
 - [Freelancer Planning for 2027: Estimated Tax Dates and Safe Harbors](https://robertallenbautista.com/articles/2027-estimated-tax-dates-freelancers-kansas-city/): The four 2027 estimated tax due dates, how weekends and holidays shift them, safe harbor rules and the Kansas City earnings tax, by Robert Allen Bautista.
+
+- [Links](https://robertallenbautista.com/links/): guides, newsletters, books and official profiles on one page.
 
 ## Contact
 info@robertallenbautista.com
